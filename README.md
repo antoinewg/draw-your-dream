@@ -15,7 +15,7 @@ You can use this as a quick jumping-off point to build a web app using Replicate
 Install dependencies:
 
 ```console
-npm install
+pnpm install
 ```
 
 Add your [Replicate API token](https://replicate.com/account#token) to `.env.local`:
@@ -27,7 +27,7 @@ REPLICATE_API_TOKEN=<your-token-here>
 Run the development server:
 
 ```console
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser.
