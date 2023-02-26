@@ -1,4 +1,4 @@
-## Stable diffusion prompt
+# Draw you dream 🦚
 
 ## Noteworthy files
 
