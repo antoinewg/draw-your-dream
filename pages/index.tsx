@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Replicate + Next.js</title>
+        <title>Draw your dream</title>
       </Head>
 
       <p>
