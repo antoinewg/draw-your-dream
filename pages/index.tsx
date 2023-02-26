@@ -1,55 +1,51 @@
-import { FormEventHandler, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { Prediction } from "../types/prediction";
+import { FormEventHandler, useState } from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
+import styles from '../styles/Home.module.css'
+import { Prediction } from '../types/prediction'
 
-const sleep = (ms:number) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 export default function Home() {
-  const [prediction, setPrediction] = useState<Prediction>();
-  const [error, setError] = useState<string | null>(null);
+  const [prediction, setPrediction] = useState<Prediction>()
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const target = e.target as typeof e.target & {
-      prompt: { value: string };
-    };
+      prompt: { value: string }
+    }
 
-
-    const response = await fetch("/api/predictions", {
-      method: "POST",
+    const response = await fetch('/api/predictions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         prompt: target.prompt.value,
       }),
-    });
+    })
 
-    let prediction = await response.json();
+    let prediction = await response.json()
     if (response.status !== 201) {
-      setError(prediction.detail);
-      return;
+      setError(prediction.detail)
+      return
     }
 
-    setPrediction(prediction);
+    setPrediction(prediction)
 
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
-      await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
+    while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
+      await sleep(1000)
+      const response = await fetch('/api/predictions/' + prediction.id)
+      prediction = await response.json()
       if (response.status !== 200) {
-        setError(prediction.detail);
-        return;
+        setError(prediction.detail)
+        return
       }
-      console.log({ prediction });
-      setPrediction(prediction);
+      console.log({ prediction })
+      setPrediction(prediction)
     }
-  };
+  }
 
   return (
     <div className={styles.container}>
@@ -58,7 +54,7 @@ export default function Home() {
       </Head>
 
       <p>
-        Dream something with{" "}
+        Dream something with{' '}
         <a href="https://replicate.com/stability-ai/stable-diffusion">
           stability-ai/stable-diffusion
         </a>
@@ -66,11 +62,7 @@ export default function Home() {
       </p>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="prompt"
-          placeholder="Enter a prompt to display an image"
-        />
+        <input type="text" name="prompt" placeholder="Enter a prompt to display an image" />
         <button type="submit">Go!</button>
       </form>
 
@@ -92,5 +84,5 @@ export default function Home() {
         </div>
       )}
     </div>
-  );
+  )
 }

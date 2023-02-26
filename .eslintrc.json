@@ -4,5 +4,72 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "rules": {
+    "indent": "off",
+    "prettier/prettier": "error",
+    "object-curly-spacing": ["warn", "always"],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 100,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "react/jsx-key": "warn",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/tests/**/*"
+        ]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-boolean-value": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "arrow-body-style": ["warn", "as-needed"],
+    "spaced-comment": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-useless-constructor": "off",
+    "global-require": "off",
+    "no-console": "off",
+    "@typescript-eslint/ban-ts-comment": "warn"
+  },
   "plugins": ["prettier"]
 }
