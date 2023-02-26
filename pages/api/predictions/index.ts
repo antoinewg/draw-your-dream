@@ -19,7 +19,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   });
 
   if (response.status !== 201) {
-    let error = await response.json();
+    const error = await response.json();
     res.statusCode = 500;
     res.end(JSON.stringify({ detail: error.detail }));
     return;
